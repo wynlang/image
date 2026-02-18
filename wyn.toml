@@ -1,0 +1,4 @@
+[project]
+name = "image"
+version = "0.1.0"
+description = "Load PNG/JPG/BMP images (wraps stb_image)"
