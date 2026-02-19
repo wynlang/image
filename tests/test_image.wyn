@@ -1,16 +1,25 @@
-fn main() -> int {
-    Test.init("image")
+test "detect png" {
     // Image format detection by extension
     var png = "photo.png"
     var jpg = "photo.jpg"
-    Test.assert(png.ends_with(".png"), "detect png")
-    Test.assert(jpg.ends_with(".jpg"), "detect jpg")
+    assert(png.ends_with(".png"))
+}
+
+test "detect jpg" {
+    // Image format detection by extension
+    var png = "photo.png"
+    var jpg = "photo.jpg"
+    assert(jpg.ends_with(".jpg"))
+}
+
+test "pixel buffer size" {
+    // Image format detection by extension
+    var png = "photo.png"
+    var jpg = "photo.jpg"
     // Pixel math
     var w = 800
     var h = 600
     var channels = 4  // RGBA
     var size = w * h * channels
-    Test.assert_eq_int(size, 1920000, "pixel buffer size")
-    Test.summary()
-    return 0
+    assert_eq(size, 1920000)
 }
