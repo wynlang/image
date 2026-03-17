@@ -1,0 +1,25 @@
+// image - Wyn package for image utilities
+// Pure-Wyn helpers for format detection, buffer math, and metadata.
+// C bindings (libpng, libjpeg, stb_image) would provide: decode, encode, resize, pixel access.
+
+fn image_format(path: string) -> string {
+    if path.ends_with(".png") { return "png" }
+    if path.ends_with(".jpg") { return "jpg" }
+    if path.ends_with(".jpeg") { return "jpg" }
+    if path.ends_with(".bmp") { return "bmp" }
+    if path.ends_with(".gif") { return "gif" }
+    return "unknown"
+}
+
+fn image_buffer_size(width: int, height: int, channels: int) -> int {
+    return width * height * channels
+}
+
+fn image_is_supported(path: string) -> bool {
+    var fmt = image_format(path)
+    return fmt != "unknown"
+}
+
+fn image_dimensions_str(w: int, h: int) -> string {
+    return int_to_string(w) + "x" + int_to_string(h)
+}
