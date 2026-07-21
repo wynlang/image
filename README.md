@@ -1,4 +1,4 @@
-# image — Official Wyn Package
+# image - Official Wyn Package
 
 Load PNG/JPG/BMP images. Wraps stb_image (single-header C library).
 
@@ -17,4 +17,4 @@ var height = Image_height(img)
 Image_free(img)
 ```
 
-No system dependency — stb_image is bundled.
+No system dependency - stb_image is bundled.
