@@ -1,30 +1,11 @@
-fn image_format(path: string) -> string {
-    if path.ends_with(".png") { return "png" }
-    if path.ends_with(".jpg") or path.ends_with(".jpeg") { return "jpg" }
-    if path.ends_with(".bmp") { return "bmp" }
-    if path.ends_with(".gif") { return "gif" }
-    return "unknown"
-}
+// Exercises the shipped lib in src/image.wyn via the tests/image.wyn symlink.
+import image
 
-fn image_buffer_size(width: int, height: int, channels: int) -> int {
-    return width * height * channels
-}
-
-fn image_is_supported(path: string) -> bool {
-    var fmt = image_format(path)
-    return fmt != "unknown"
-}
-
-fn main() -> int {
-    assert_eq(image_format("photo.png"), "png")
-    assert_eq(image_format("photo.jpg"), "jpg")
-    assert_eq(image_format("photo.bmp"), "bmp")
-    assert_eq(image_format("photo.txt"), "unknown")
-    assert_eq(image_buffer_size(800, 600, 4), 1920000)
-    assert_eq(image_buffer_size(1, 1, 3), 3)
-    if image_is_supported("test.png") { println("supported: pass") }
-    if not image_is_supported("test.txt") { println("unsupported: pass") }
-    
-    println("image: 8 tests passed")
-    return 0
-}
+test "png format" { assert_eq(image.image_format("photo.png"), "png") }
+test "jpg format" { assert_eq(image.image_format("a.jpg"), "jpg") }
+test "jpeg maps to jpg" { assert_eq(image.image_format("a.jpeg"), "jpg") }
+test "unknown format" { assert_eq(image.image_format("a.txt"), "unknown") }
+test "buffer size" { assert_eq(image.image_buffer_size(2, 3, 4), 24) }
+test "supported yes" { assert(image.image_is_supported("x.png")) }
+test "supported no" { assert(not image.image_is_supported("x.txt")) }
+test "dimensions str" { assert_eq(image.image_dimensions_str(800, 600), "800x600") }

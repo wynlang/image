@@ -1,0 +1,7 @@
+import image
+
+fn main() {
+    println("format: ${image.image_format("photo.png")}")
+    println("buffer: ${image.image_buffer_size(800, 600, 4)} bytes")
+    println("dims: ${image.image_dimensions_str(800, 600)}")
+}
